@@ -1,10 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<!--================End Main Header Area =================-->
+<section class="banner_area wow bounceInDown">
+	{% for sub_banner in cat_data%}
+	<picture>
+		<source media="(max-width:767px)" srcset="{{ sub_banner.mob_image.url }}">
+		<source media="(min-width:768px)" srcset="{{ sub_banner.desk_image.url }}">
+		<img src="#" alt="{{ sub_banner.title }}">
+	</picture>
+	{% endfor %}
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">{{slug | title}}</li>
+			</ol>
+		</nav>
+	</div>
+</section>
+<!--================End Main Header Area =================-->
+<!--================End Product Details Area =================-->
+<section class="single_product_area p_100">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="left_sidebar">
+					<div class="r_title">
+						<h3>Our Other Products</h3>
+					</div>
+					<div class="categories_widget">
+						<ul class="list_style">
+							{% for category in categories_with_count %}
+								<li><a href="/our-menu/{{category.slug}}">{{ category.cat_name | title}} ({{ category.product_count }})<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+							{% empty %}
+    						<li>No members</li>
+							{%endfor%}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="form-row">
+					{% for product in prod_data %}
+					<div class="col-sm-6 col-md-4">
+						<div class="single-product wow zoomIn det" data-id="">
+							<div class="single-product-img">
+								<img src="{{product.image1.url}}" alt="{{product.productname}}">
+							</div>
+							<div class="single-product-text">
+								<h4 title="{{product.productname}}">{{product.productname}}</h4>
+								<p title="{{product.short_description}}">{{product.short_description}}</p>
+								<div class="single-product-detail">
+									<div class="price">&#8377;{{product.mrp}} for one</div>
+								</div>
+							</div>
+							<div class="single-product-btn">
+								<button class="btn pink_more add_order btn-block">Add +</button>
+							</div>
+						</div>
+					</div>
+					{% empty%}
+					<h1 style="text-align: center">No product added for this category.</h1>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% for sub_banner in cat_data%}
+{% if sub_banner.cat_descr|length > 0 %}
+	<section class="our_bakery_area p_100">
+		<div class="container">
+			<div class="our_bakery_text text-left wow zoomIn">
+				{{sub_banner.cat_descr | safe}}
+			</div>
+		</div>
+	</section>
+{%endif%}
+{%endfor%}
+{% endblock %}

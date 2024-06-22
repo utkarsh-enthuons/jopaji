@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<!--================End Main Header Area =================-->
+<section class="banner_area wow bounceInDown">
+	{% for sub_banner in sub_banners%}
+	<picture>
+		<source media="(max-width:767px)" srcset="{{ sub_banner.mob_image.url }}">
+		<source media="(min-width:768px)" srcset="{{ sub_banner.desk_image.url }}">
+		<img src="#" alt="{{ sub_banner.title }}">
+	</picture>
+	{% endfor %}
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Our Menu</li>
+			</ol>
+		</nav>
+	</div>
+</section>
+<!--================End Main Header Area =================-->
+<!--================Contact Form Area =================-->
+<section class="contact_form_area p_100">
+	<div class="container">
+		<div class="main_title zoomIn wow">
+			<h2>Get In Touch</h2>
+			<h5>Jo Paji Foods restaurant cum cafe is known for its delicious food and pleasant ambience. You can now enjoy all of this with the convenience of contacting us on</h5>
+		</div>
+		<div class="row">
+			<div class="col-lg-7 order-2 order-lg-1 wow fadeInLeft">
+				{% if form.non_field_errors %}
+				{% for error in form.non_field_errors %}
+				<div class="alert alert-danger">{{ error }}</div>
+				{% endfor %}
+				{%endif%}
+				<form class="row contact_us_form" action="" method="POST" id="contactForm" novalidate>
+					{% csrf_token %}
+					<div class="form-group col-md-6">
+						{{ form.name }}
+						{% for error in form.name.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+					<div class="form-group col-md-6">
+						{{ form.email }}
+						{% for error in form.email.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+					<div class="form-group col-md-12">
+						{{ form.subject }}
+						{% for error in form.subject.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+					<div class="form-group col-md-12">
+						{{ form.message }}
+						{% for error in form.message.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+					<div class="form-group col-md-12">
+						<button type="submit" value="submit" name="submit" class="pink_btn">submit now</button>
+					</div>
+				</form>
+				{% if messages %}
+					{% for message in messages %}
+					<div class="alert alert-success mt-3">{{ message }}</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+			<div class="col-lg-4 offset-lg-1 order-lg-2 order-1 wow fadeInRight">
+				<div class="contact_details">
+					<div class="contact_d_item">
+						<h3>Address :</h3>
+						<p>Lg 29 cloud 9 Vaishali Sector 1 Ghaziabad 201019 UP</p>
+					</div>
+					<div class="contact_d_item">
+						<h5>Phone : <a href="tel:+918595751755"> (+91)-859 575 1755</a></h5>
+						<h5>Email : <a href="mainto:info@jopajifoods.com">info@jopajifoods.com</a></h5>
+					</div>
+					<div class="contact_d_item">
+						<h3>Opening Hours :</h3>
+						<p>8:00 AM – 10:00 PM</p>
+						<p>Monday – Sunday</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--================End Contact Form Area =================-->
+<section class="map pb-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30688665.826026153!2d64.40283707327588!3d20.126744322531355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1669200538756!5m2!1sen!2sin" height="450" style="border:0;width:100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

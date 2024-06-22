@@ -1,0 +1,157 @@
+{% load static %}
+<!--================Footer Area =================-->
+<footer class="footer_area wow fadeInUp">
+    <div class="footer_widgets">
+        <div class="container">
+            <div class="row footer_wd_inner">
+                <div class="col-lg-3 col-6 wow fadeInLeft">
+                    <aside class="f_widget f_about_widget">
+                        <img class="lazyload" data-src="{% static 'img/logo.png' %}" alt="">
+                        <p>We are a Restaurant cum Cafe offering the most delicious and finger-licking food. With our team of experienced chefs, we bring you the delicious food that is sure to leave you awestruck! </p>
+                        <ul class="nav">
+                            <li><a href="https://www.facebook.com/jopajifoods/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.instagram.com/jopajifoods/?next=%2F" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/jo-paji-foods/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://twitter.com/joPajifoods" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-lg-3 col-6 wow fadeInLeft">
+                    <aside class="f_widget f_link_widget">
+                        <div class="f_title">
+                            <h3>Important links</h3>
+                        </div>
+                        <ul class="list_style">
+                            <li><a href="">Home</a></li>
+                            <li><a href="">Our Story</a></li>
+                            <li><a href="">Gallery</a></li>
+                            <li><a href="">Contact Us</a></li>
+                            <li><a href="">News &amp; Blogs</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-lg-3 col-6 wow fadeInRight">
+                    <aside class="f_widget f_link_widget">
+                        <div class="f_title">
+                            <h3>Our Products</h3>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-lg-3 col-6 wow fadeInRight">
+                    <aside class="f_widget f_contact_widget">
+                        <div class="f_title">
+                            <h3>Contact Info</h3>
+                        </div>
+                        <h4><a href="tel:+918595751755"><i class="fa fa-phone" aria-hidden="true"></i> (+91)-859 575 1755</a></h4>
+                        <h4><a href="mainto:info@jopajifoods.com"><i class="fa fa-envelope" aria-hidden="true"></i> info@jopajifoods.com</a></h4>
+                        <p><b>Outlet-1 </b> Lg 29 cloud 9 Vaishali Sector 1 Ghaziabad 201019 UP</p><br>
+                        <p><b>Outlet-2 </b> Shop No. G 1 Block A And C Surajmal Vihar Keventers Market Delhi 110092</p>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_copyright">
+        <div class="container">
+            <div class="copyright_inner">
+                <div class="float-left">
+                    <h5>All Rights Reserved. Design and Developed with <i class="fa fa-heart" style="color: red"></i> by <a href="https://wedigitalindia.com/" target="_blank" style="color: #00d1be; font-weight:bold">WeDigital India.</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="modal fade" id="add_order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="mo"></div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Order Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+             <div class="co"></div>
+        </div>
+    </div>
+</div>
+<!--================End Footer Area =================-->
+
+ <!--jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!--<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>-->
+ <!--Include all compiled plugins (below), or include individual files as needed -->
+<!--<script src="{% static 'js/popper.min.js' %}"></script>-->
+<!--<script src="{% static 'js/bootstrap.min.js' %}"></script>-->
+ <!--Extra plugin js -->
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<!--<script src="{% static 'vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>-->
+<!--<script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>-->
+<!--<script src="{% static 'vendors/jquery-ui/jquery-ui.min.js' %}"></script>-->
+<!--<script src="{% static 'js/wow.min.js' %}"></script>-->
+<!--<script src="{% static 'js/lazy-load.js' %}"></script>-->
+<!--<script src="{% static 'vendors/magnifc-popup/jquery.magnific-popup.min.js' %}"></script>-->
+<!--<script src="{% static 'vendors/isotope/imagesloaded.pkgd.min.js' %}"></script>-->
+<!--<script src="{% static 'vendors/isotope/isotope.pkgd.min.js' %}"></script>-->
+<!--<script src="{% static 'vendors/lightbox/simpleLightbox.min.js' %}"></script>-->
+<!--<script src="{% static 'js/theme.js' %}"></script>-->
+<script src="{% static 'js/main.js'%}"></script>
+<script>
+    new WOW().init();
+</script>
+<script>
+            $(".add_order").click(function() {
+               
+                var data_id=$(this).closest(".single-product").attr("data-id");
+                var action = 'fetch_data';
+                console.log(data_id);
+                $.ajax({
+                    url: "{% static 'create_order.php",
+                    method: "POST",
+                    data: {
+                        action: action,
+                        data_id:data_id,
+                    },
+                    success: function(data) {
+                        $("#exampleModal1").modal('hide');
+                        $('#add_order').modal('show');
+                        $('.mo').html(data);
+                        $(".address-modal-section .mb-2:first-child input").attr("checked","checked");
+                    }
+                });
+            });
+            $(".home_add_order").click(function() {
+               
+                var data_id=$(this).closest(".det").attr("data-id");
+                var action = 'fetch_data';
+                console.log(data_id);
+                $.ajax({
+                    url: "{% static 'create_order.php",
+                    method: "POST",
+                    data: {
+                        action: action,
+                        data_id:data_id,
+                    },
+                    success: function(data) {
+                        $("#exampleModal1").modal('hide');
+                        $('#add_order').modal('show');
+                        $('.mo').html(data);
+                        $(".address-modal-section .mb-2:first-child input").attr("checked","checked");
+                    }
+                });
+            });
+        </script>

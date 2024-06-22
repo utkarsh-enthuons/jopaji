@@ -1,10 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<!--================End Main Header Area =================-->
+<section class="banner_area wow bounceInDown">
+	{% for sub_banner in sub_banners%}
+	<picture>
+		<source media="(max-width:767px)" srcset="{{ sub_banner.mob_image.url }}">
+		<source media="(min-width:768px)" srcset="{{ sub_banner.desk_image.url }}">
+		<img src="#" alt="{{ sub_banner.title }}">
+	</picture>
+	{% endfor %}
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">About Us</li>
+			</ol>
+		</nav>
+	</div>
+</section>
+<!--================End Main Header Area =================-->
+        <!--================Our Bakery Area =================-->
+        <section class="our_bakery_area p_100">
+        	<div class="container">
+        		<div class="our_bakery_text wow zoomIn">
+        			<h2>Delicious Restaurant & Cafe Cuisine - Tasty Food & Treats!</h2>
+					<p>JO Paji Foods has come a long way since its humble beginnings two decades ago, founded by Ankur Gupta. It has now blossomed into a fully-fledged restaurant and café renowned in the area for its delicious food. The friendly staff and great atmosphere add to the charm of JO Paji Foods, making it the perfect place to enjoy a meal or have a cup of coffee.</p>
+        		</div>
+        		<div class="row our_bakery_image">
+        			<div class="col-md-6 wow fadeInLeftBig">
+        				<img class="img-fluid" src="{% static 'img/banner/enjoy-food.jpg' %}" alt="">
+        			</div>
+        			<div class="col-md-6 wow fadeIn">
+        				<img class="img-fluid" src="{% static 'img/banner/enjoy-food-2.jpg' %}" alt="">
+					</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Our Bakery Area =================-->
+        <!--================Bakery Video Area =================-->
+        <section class="bakery_video_area wow zoomIn">
+        	<div class="container">
+        		<div class="video_inner">
+        			<h3>Real Taste</h3>
+        			<p>A light, sour wheat dough with roasted walnuts and freshly picked rosemary, thyme, poppy seeds, parsley and sage</p>
+        			<!--<div class="media">-->
+        			<!--	<div class="d-flex">-->
+        			<!--		<a class="popup-youtube" href="http://www.youtube.com/watch?v=0O2aH4XLbto"><i class="flaticon-play-button"></i></a>-->
+        			<!--	</div>-->
+        			<!--	<div class="media-body">-->
+        			<!--		<h5>Watch intro video <br />about us</h5>-->
+        			<!--	</div>-->
+        			<!--</div>-->
+        		</div>
+        	</div>
+        </section>
+        <!--================End Bakery Video Area =================-->
+        <!--================Our Mission Area =================-->
+        <section class="our_mission_area p_100" id="mission">
+        	<div class="container">
+        		<div class="row our_mission_inner align-items-center">
+        			<div class="col-lg-3 wow fadeInLeft">
+        				<div class="single_m_title">
+        					<h2>Our Mission</h2>
+        				</div>
+        			</div>
+        			<div class="col-lg-9 wow fadeInRight">
+        				<div class="mission_inner_text">
+							<p class="mb-2">At Jo Paji Foods, we strive to create memorable experiences for our customers by delivering the highest-quality food and beverages in an enjoyable and welcoming atmosphere. </p>
+							<p class="mb-0">We are committed to providing every customer with a unique and inspired culinary experience that encapsulates the diversity of our menu and the vibrant culture of our restaurant. Our commitment to superior service and customer satisfaction will remain the bedrock of our success.</p>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Our Mission Area =================-->
+        <!--================Our vision Area =================-->
+        <section class="our_mission_area p_100 right_about" id="vision" style="background: rgb(0 209 190 / 10%);">
+        	<div class="container">
+        		<div class="row our_mission_inner align-items-center">
+        			<div class="col-lg-9 wow fadeInLeft order-lg-1 order-2">
+        				<div class="mission_inner_text">
+							<p class="mb-0">At Jo Paji Foods, we envision a future where everyone can access delicious, wholesome, and fresh food. By combining the best of classic cuisine with contemporary tastes, we are working to create a world-class dining experience that is accessible to everyone. We are dedicated to providing a welcoming atmosphere that encourages camaraderie, collaboration, and a sense of belonging.</p>
+        				</div>
+        			</div>
+                    <div class="col-lg-3 wow fadeInRight order-lg-2 order-1">
+        				<div class="single_m_title">
+        					<h2>Our Vision</h2>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Our vision Area =================-->
+        <!--================Our Mission Area =================-->
+        <section class="our_mission_area p_100" id="goals">
+        	<div class="container">
+        		<div class="row our_mission_inner align-items-center">
+        			<div class="col-lg-3 wow fadeInLeft">
+        				<div class="single_m_title">
+        					<h2>Our Goals</h2>
+        				</div>
+        			</div>
+        			<div class="col-lg-9 wow fadeInRight">
+        				<div class="mission_inner_text">
+							<p class="mb-0">We strive to provide quality, healthy, and sustainable products for our customers while maintaining the local character of the community in which we operate. We are committed to utilizing innovative technology and modern techniques to create a safe and enjoyable environment for our guests. </p>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Our Mission Area =================-->
+		<!--================Our Mission Area =================-->
+        <section class="our_mission_area p_100" style="background: rgb(0 209 190 / 10%);">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-lg-12">
+						<div class="single_m_title text-center mb-4 zoomIn wow">
+        					<h2>Why enjoy your meals with us?</h2>
+        				</div>
+        				<div class="mission_inner_text text-justify wow bounceInUp">
+							<p class="mb-2">Jo Paji Foods is a restaurant cum cafe that offers the best of both worlds. We offer a wide variety of delicious dishes and drinks, all prepared with the freshest ingredients and cooked to perfection. Our restaurant cum cafe is a great place to enjoy your favourite meal or hang out with friends. We also have an extensive selection of beverages to choose from, as well as desserts and other treats. </p>
+							<p class="mb-2">Jo Paji Foods is a restaurant cum cafe that offers a unique combination of traditional and modern cuisine. Our menu consists of both Indian and international dishes. We also offer a wide range of beverages, including non-alcoholic drinks, smoothies, milkshakes, and more.</p>
+							<p class="mb-0">We believe that food should be an enjoyable experience for everyone, so we cater to all dietary needs and preferences. From vegan options to gluten-free dishes, there is something for everyone at Jo Paji Foods!</p>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Our Mission Area =================-->
+		<!--================Our Mission Area =================-->
+        <section class="our_mission_area p_100">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-lg-6 wow fadeInLeftBig">
+						<div class="single_m_title mb-4">
+        					<h2>Why enjoy your meals with us?</h2>
+        				</div>
+        				<div class="mission_inner_text text-justify">
+							<ul>
+								<li>Delicious food with a variety of options</li>
+								<li>Friendly and attentive staff</li>
+								<li>Comfortable and cosy atmosphere</li>
+								<li>Affordable prices </li>
+								<li>Serves freshly prepared food with high-quality ingredient</li>
+								<li>Variety of drinks and beverages</li>
+								<li>Relaxing ambience with comfortable seating</li>
+								<li>Special discounts and offers</li>
+							</ul>
+						</div>
+        			</div>
+					<div class="col-md-6 wow fadeInRightBig">
+						<img src="{% static 'img/banner/about-2.jpg' %}" style="width:100%;height:300px;object-fit:cover" alt="">
+					</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Our Mission Area =================-->
+		<!--================Our Mission Area =================-->
+        <section class="our_mission_area p_100" style="background: rgb(0 209 190 / 10%);">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-lg-12">
+						<div class="single_m_title text-center mb-4 wow zoomIn">
+        					<h2>A Great and comfortable ambience</h2>
+        				</div>
+        				<div class="mission_inner_text text-justify wow fadeIn">
+							<p class="mb-2">We pride ourselves on our excellent customer service, friendly atmosphere, and commitment to quality. Our knowledgeable staff will be happy to help you find the perfect dish or drink for your taste buds! </p>
+							<p class="mb-2">At Jo Paji Foods, we strive to provide our customers an unforgettable experience. We use fresh ingredients in all our dishes and the latest cooking methods to ensure maximum flavour. Our friendly staff are always available to help customers with their orders or answer any questions.</p>
+							<p class="mb-0">Whether you’re looking for something light or hearty, we’ve got it all here at Jo Paji Foods. So come on in, relax, and enjoy some delicious food!</p>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Our Mission Area =================-->
+{%endblock%}

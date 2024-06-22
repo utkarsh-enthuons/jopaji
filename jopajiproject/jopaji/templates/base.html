@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    {%include 'include/head.html'%}
 </head>
 <body>
-$END$
+    {%include 'include/header.html'%}
+    {%block content%}
+    {%endblock%}
+    {%include 'include/footer.html'%}
+    {% block js %}
+    {% endblock %}
 </body>
 </html>

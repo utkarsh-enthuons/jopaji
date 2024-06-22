@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<!--================End Main Header Area =================-->
+<section class="banner_area wow bounceInDown">
+	{% for sub_banner in sub_banners%}
+	<picture>
+		<source media="(max-width:767px)" srcset="{{ sub_banner.mob_image.url }}">
+		<source media="(min-width:768px)" srcset="{{ sub_banner.desk_image.url }}">
+		<img src="#" alt="{{ sub_banner.title }}">
+	</picture>
+	{% endfor %}
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Our Menu</li>
+			</ol>
+		</nav>
+	</div>
+</section>
+<!--================End Main Header Area =================-->
+<!--================Product Area =================-->
+<section class="product_area p_100">
+	<div class="container">
+		<div class="row">
+			{% for category in categories%}
+			<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+				<div class="item wow tada">
+					<div class="cake_feature_item">
+						<a href="{{ category.slug }}" class="d-block cake_img">
+							<img src="{{ category.image.url }}" alt="{{ category.cat_name }}">
+						</a>
+						<div class="cake_text">
+							<h3><a href="{{ category.slug }}">{{ category.cat_name }}</a></h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<!--================Product Area =================-->
+{% endblock %}

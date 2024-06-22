@@ -1,10 +1,180 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<!--================End Main Header Area =================-->
+<section class="banner_area wow bounceInDown">
+	{% for sub_banner in sub_banners%}
+	<picture>
+		<source media="(max-width:767px)" srcset="{{ sub_banner.mob_image.url }}">
+		<source media="(min-width:768px)" srcset="{{ sub_banner.desk_image.url }}">
+		<img src="#" alt="{{ sub_banner.title }}">
+	</picture>
+	{% endfor %}
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Franchise</li>
+			</ol>
+		</nav>
+	</div>
+</section>
+<!--================End Main Header Area =================-->
+<!--================Checkout Area =================-->
+<section class="franchise_page p_100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="main_title zoomIn wow">
+                    <h2>Want to grow with us?</h2>
+                </div>
+                <p>You are on a correct page for F & B business Jo Paji Foods is a cafe cum restaurant Business where we offer low cost food with extreme good quality.</p>
+                <p>We also help people who don’t have offices to meet people. We give them a space free of cost with a wifi facility.</p>
+                <p>We have various food options like momos pizza, rajma rice, gulab jamun, kulhad, pizza, etc. you can also check our menu <a href="{% url 'our menu' %}">(click here)</a>.</p>
+            </div>
+            <div class="col-md-4">
+                <img src="{% static 'img/franchise/franchise.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="gray_service p_100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main_title text-center zoomIn wow">
+                    <h2>Our Cafe Models</h2>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mx-auto">
+                <div class="outlet_box s_we_item gray_s_item">
+                    <div class="outlet_img">
+                        <img src="{% static 'img/franchise/frenchaise-1.jpg' %}" alt="">
+                    </div>
+                    <div class="outlet_text">
+                        <h4>Dine in Modal</h4>
+                        <p>300 – 400 Sq. Ft.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mx-auto">
+                <div class="outlet_box s_we_item gray_s_item">
+                    <div class="outlet_img">
+                        <img src="{% static 'img/franchise/frenchaise-2.jpg' %}" alt="">
+                    </div>
+                    <div class="outlet_text">
+                        <h4>Launge Modal</h4>
+                        <p>500 – 800 Sq. Ft.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mx-auto">
+                <div class="outlet_box s_we_item gray_s_item">
+                    <div class="outlet_img">
+                        <img src="{% static 'img/franchise/frenchaise-3.jpg' %}" alt="">
+                    </div>
+                    <div class="outlet_text">
+                        <h4>KIOSK Modal</h4>
+                        <p>150 Sq. Ft.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Checkout Area =================-->
+<section class="p_100">
+    <div class="container">
+        <div class="main_title text-center zoomIn wow">
+            <h2>Start with Us</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-justify fadeInLeft wow">
+                    <p>café chain with the fastest growth. From obscurity to iconic brand. To become their own bosses, many people are joining our company.</p>
+                    <p>If you have ever dreamt of being your own boss, if you want to be in charge of your own growth. Most importantly, if you are foodie and you love foodie people, then we will help you start and grow your Jo Paji and Food Franchise.</p>
+                    <p>Join Joprenuers and help us serve happiness and smile with a touch of inspiration in every serve.</p>
+                </div>
+            </div>
+            <div class="col-lg-8 mx-auto wow fadeInRight">
+                {% if form.non_field_errors %}
+				{% for error in form.non_field_errors %}
+				<div class="alert alert-danger">{{ error }}</div>
+				{% endfor %}
+				{%endif%}
+				<form class="row contact_us_form" action="" method="POST" id="contactForm" novalidate>
+					{% csrf_token %}
+					<div class="form-group col-md-6">
+						{{ form.name }}
+						{% for error in form.name.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+					<div class="form-group col-md-6">
+						{{ form.email }}
+						{% for error in form.email.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+					<div class="form-group col-md-12">
+						{{ form.phone }}
+						{% for error in form.phone.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+                    <div class="form-group col-md-6">
+						{{ form.address }}
+						{% for error in form.address.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+                    <div class="form-group col-md-6">
+						{{ form.address2 }}
+						{% for error in form.address2.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+					<div class="form-group col-md-12">
+						{{ form.message }}
+						{% for error in form.message.errors%}
+						<small class="text-danger">{{error}}</small>
+						{%endfor%}
+					</div>
+					<div class="form-group col-md-12">
+						<button type="submit" value="submit" name="submit" class="pink_btn">submit now</button>
+					</div>
+				</form>
+				{% if messages %}
+					{% for message in messages %}
+					<div class="alert alert-success mt-3">{{ message }}</div>
+					{% endfor %}
+				{% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="gray_service p_100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 zoomInUp wow">
+                <div class="counter">
+                    <div class="number"><b>100000</b><span>+</span></div>
+                    <div class="value">Daily Customers</div>
+                </div>
+            </div>
+            <div class="col-md-4 zoomInUp wow">
+                <div class="counter">
+                    <div class="number"><b>100</b><span>+</span></div>
+                    <div class="value">Outlets Serving</div>
+                </div>
+            </div>
+            <div class="col-md-4 zoomInUp wow">
+                <div class="counter">
+                    <div class="number"><b>100</b><span>+</span></div>
+                    <div class="value">Chai Preneurs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load static %}
+<!--================Main Header Area =================-->
+<header class="main_header_area">
+    <div class="top_header_area row m0 wow fadeIn">
+        <div class="container">
+            <div class="float-left">
+                <a href="tel:+918595751755"><i class="fa fa-phone" aria-hidden="true"></i> (+91)-859 575 1755</a>
+                <a href="mainto:info@jopajifoods.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> info@jopajifoods.com</a>
+            </div>
+            <div class="float-right">
+                <ul class="h_social list_style">
+                    <li><a href="https://www.facebook.com/jopajifoods/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/jopajifoods/?next=%2F" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/jo-paji-foods/?viewAsMember=true" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="https://twitter.com/joPajifoods" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main_menu_area">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="{%url 'homepage'%}/">
+                <img src="{% static 'img/logo.png' %}" alt="">
+                <img src="{% static 'img/logo.png' %}" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="my_toggle_menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto align-md-items-center">
+                        <li class="active">
+                            <a href="{% url 'homepage'%}">Home</a>
+                        </li>
+                        <li class="dropdown"><a href="{% url 'about us'%}">Our Story</a></li>
+                        <li><a href="{% url 'our menu'%}">Our Menu</a></li>
+                        <li><a href="{% url 'franchise'%}">Franchise</a></li>
+                        <li><a href="{% url 'contact us'%}">Contact Us</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="/admin/" class="book_order">My Account</a></li>
+                        {% else %}
+                            <li><a href="{% url 'book order'%}" class="book_order">Book an order</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<!--================End Main Header Area =================-->

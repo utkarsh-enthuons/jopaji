@@ -1,10 +1,169 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{%block content%}
+<!-- section banner started... -->
+<section class="banner wow pulse">
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            {% for banner in banners %}
+            <div class="swiper-slide">
+                <picture>
+                    <source media="(max-width: 767px)" srcset="{{banner.mob_image.url}}">
+                    <img class='lazyload' data-src="{{banner.desk_image.url}}" alt="{{banner.alt_text}}" src="#">
+                </picture>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</section>
+<!-- section banner ended... -->
+<!--================Welcome Area =================-->
+<section class="welcome_bakery_area">
+    <div class="container">
+        <div class="welcome_bakery_inner p_100">
+            <div class="row">
+                <div class="col-lg-6  wow fadeInLeft">
+                    <div class="welcome_img">
+                        <img class="img-fluid mb-3 lazyload" data-src="{% static 'img/banner/exotic.jpg' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight">
+                    <div class="main_title">
+                        <h2>Taste delicious food with Jo Paji Foods</h2>
+                        <p>Welcome to Jo Paji Foods!</p>
+                    </div>
+                    <div class="welcome_left_text">
+                        <p class="mb-3">We are a Restaurant cum Cafe offering the most delicious and finger-licking food. With our team of experienced chefs, we bring you the delicious food that is sure to leave you awestruck!</p>
+                        <p class="mb-3">Our chef’s unique recipes are crafted to provide you with a perfect balance between taste and nutrition. We use fresh ingredients sourced from local community farms to ensure that our dishes are as healthy as they can be. Jo Paji Foods is the perfect place to enjoy a delicious meal with family and friends. </p>
+                        <p class="mb-3">Our restaurant cum cafe offers you a wide range of food options to choose from. Whether you’re looking for a quick bite or a more leisurely meal, we have something for everyone. With Jo Paji Foods, you will never have to wait long for your order. We offer fast delivery so you can enjoy your meal without delay.</p>
+                        <a class="pink_btn" href="{% url 'about us' %}">Know more about us</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="cake_feature_inner wow">
+            <div class="main_title wow zoomIn">
+                <h2>Our Featured Food</h2>
+            </div>
+
+            <div class="cake_feature_slider owl-carousel">
+                {% for category in categories%}
+                <div class="item wow tada">
+                    <div class="cake_feature_item">
+                        <a href="{{ category.slug }}" class="d-block cake_img">
+                            <img class="lazyload" data-src="{{ category.image.url }}" alt="{{ category.cat_name }}">
+                        </a>
+                        <div class="cake_text">
+                            <h3><a href="{{ category.slug }}">{{ category.cat_name }}</a></h3>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Welcome Area =================-->
+<!--================Service Area =================-->
+<section class="service_we_offer_area gray_service p_100">
+    <div class="container">
+        <div class="single_b_title wow zoomIn">
+            <h2>Services We offer</h2>
+        </div>
+        <div class="row we_offer_inner">
+            <div class="col-lg-4 wow bounceIn">
+                <div class="s_we_item gray_s_item">
+                    <div class="media">
+                        <div class="d-flex">
+                            <i class="flaticon-food-6"></i>
+                            <h4>Taste the Authenticity with Open Kitchen</h4>
+                        </div>
+                        <div class="media-body">
+                            <p>At Jo Paji Foods, we offer a wide selection of traditional dishes made with fresh ingredients and cooked in the open kitchen. Every dish is made with utmost care and attention to ensure you get an authentic taste.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 wow bounceIn">
+                <div class="s_we_item gray_s_item">
+                    <div class="media">
+                        <div class="d-flex">
+                            <i class="flaticon-food-6"></i>
+                            <h4>Live Food for Livelier Dining</h4>
+                        </div>
+                        <div class="media-body">
+                            <p>Our live food counters offer an exciting range of snacks, appetizers, and another freshly prepared right in front of you. Enjoy a unique interactive dining experience with your loved ones at Jo Paji Foods!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 wow bounceIn">
+                <div class="s_we_item gray_s_item">
+                    <div class="media">
+                        <div class="d-flex">
+                            <i class="flaticon-food-6"></i>
+                            <h4>Healthy Options for Everyone with Tasty Veg Food</h4>
+                        </div>
+                        <div class="media-body">
+                            <p>At Jo Paji Foods, we believe in providing everyone with healthy options. All our veg food is prepared using only fresh ingredients and without any preservatives or artificial food colorings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Service Area =================-->
+<!--================Client Says Area =================-->
+<section class="client_says_area p_100">
+    <div class="container">
+        <div class="client_says_inner">
+            <div class="c_says_title zoomIn wow">
+                <h2>What Our Client Says</h2>
+            </div>
+            <div class="client_says_slider owl-carousel">
+                {% for client in clients %}
+                <div class="item wow fadeIn">
+                    <div class="media">
+                        <div class="d-flex">
+                            <img class="lazyload" data-src="{{client.image.url}}" alt="">
+                            <h3>“</h3>
+                        </div>
+                        <div class="media-body">
+                            {{client.client_desc | safe}}
+                            <h5>- {{client.title}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Client Says Area =================-->
+{%endblock%}
+{% block js %}
+<script>
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
+{% endblock %}
