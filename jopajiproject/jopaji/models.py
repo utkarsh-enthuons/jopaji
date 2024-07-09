@@ -137,10 +137,59 @@ class address(models.Model):
     email = models.EmailField(max_length=64, blank=False, validators=[
         RegexValidator(regex=email_pattern, message="Please enter a valid Email ID.")])
     h_no = models.IntegerField(max_length=3, blank=True)
+    locality = models.CharField(max_length=255, blank=True)
     city_or_village = models.CharField(max_length=100, blank=False)
     zipcode = models.IntegerField(max_length=6, blank=False)
-    address = models.CharField(max_length=300, blank=False, default="")
-    state = models.CharField(choices=page_choice, default='default', max_length=50)
+    state = models.CharField(choices=state_choice, default='default', max_length=50)
 
     def __str__(self):
         return self.name
+
+
+class ProfileVerification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=False)
+    email = models.EmailField(max_length=64, blank=False, validators=[
+        RegexValidator(regex=email_pattern, message="Please enter a valid Email ID.")])
+    email_token = models.CharField(max_length=200, default='', blank=True)
+    email_verified = models.BooleanField(default=False, null=False)
+
+
+status_choice = [
+    ('pending', 'Pending'),
+    ('accepted', 'Accepted'),
+    ('packed', 'Packed'),
+    ('on_the_way', 'On the way'),
+    ('delivered', 'Delivered'),
+    ('cancelled', 'Cancelled'),
+]
+
+
+class OrderPlaced(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(address, on_delete=models.CASCADE)
+    product = models.ForeignKey(tbl_product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    ordered_date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=status_choice, default='Pending')
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(tbl_product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return str(self.id)
+
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.mrp
+
+
+class OrderPlaced(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(address, on_delete=models.CASCADE)
+    product = models.ForeignKey(tbl_product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    ordered_date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, choices=status_choice, default='Pending')

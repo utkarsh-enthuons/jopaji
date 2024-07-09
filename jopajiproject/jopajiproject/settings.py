@@ -64,6 +64,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'jopaji.context_processors.title',
+                'jopaji.context_processors.cat_pro_list',
+                'jopaji.context_processors.car_count',
             ],
         },
     },
@@ -132,3 +134,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'utkarshsaxena731055@gmail.com'
+EMAIL_HOST_PASSWORD = 'ovqgdleyoewdsljn'

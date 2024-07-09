@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{%block title%}Book Order{%endblock%}
 {%block content%}
 <!--================End Main Header Area =================-->
 <section class="banner_area wow bounceInDown">
@@ -24,8 +25,8 @@
 <section class=" p_100">
 <div class="container">
 	<div class="row">
-	<div class="col-md-6 border-right wow animated" style="visibility: visible;">
-			<div class="main_title wow zoomIn animated" style="visibility: visible; animation-name: zoomIn;">
+	<div class="col-md-6 border-right wow">
+			<div class="main_title wow zoomIn">
 				<h2>Sign Up</h2>
 			</div>
 			{% if form.non_field_errors %}
@@ -36,36 +37,14 @@
 			<form class="row wow lightSpeedIn animated" action="" method="POST" id="contactForm" novalidate>
 				{% csrf_token %}
 				<input type="hidden" name="form_name" readonly value="signup_form">
-				<div class="col-md-6 form-group">
-					{{ form.first_name }}
-					{% for error in form.first_name.errors%}
+				{%for forms in form%}
+				<div class="col-md-12 form-group">
+					{{ forms }}
+					{% for error in forms.errors%}
 					<small class="text-danger">{{error}}</small>
 					{%endfor%}
 				</div>
-				<div class="col-md-6 form-group">
-					{{ form.last_name }}
-					{% for error in form.last_name.errors%}
-					<small class="text-danger">{{error}}</small>
-					{%endfor%}
-				</div>
-				<div class="form-group col-md-12">
-					{{ form.email }}
-					{% for error in form.email.errors%}
-					<small class="text-danger">{{error}}</small>
-					{%endfor%}
-				</div>
-                <div class="form-group col-md-12">
-					{{ form.password1 }}
-					{% for error in form.password1.errors%}
-					<small class="text-danger">{{error}}</small>
-					{%endfor%}
-				</div>
-                <div class="form-group col-md-12">
-					{{ form.password2 }}
-					{% for error in form.password2.errors%}
-					<small class="text-danger">{{error}}</small>
-					{%endfor%}
-				</div>
+				{%endfor%}
 				<div class="form-group col-md-12">
 					<input type="submit" name="signup" value="SIGN UP" class="pink_btn">
 				</div>
@@ -78,32 +57,31 @@
 			</ul>
 			{% endif %}
 		</div>
-	<div class="col-md-6 wow  animated">
+	<div class="col-md-6 wow  animate">
 			<div class="main_title wow zoomIn">
 				<h2>Sign In</h2>
 			</div>
-			{% if login_form.non_field_errors %}
-				{% for error in form.non_field_errors %}
+			{% if formLogins.non_field_errors %}
+				{% for error in formLogins.non_field_errors %}
 				<div class="alert alert-danger">{{ error }}</div>
 				{% endfor %}
 			{%endif%}
-			<form action="" method="post" class="wow lightSpeedIn" novalidate>
+			<form action="" method="post" class="row wow lightSpeedIn" novalidate>
 				{% csrf_token %}
 				<input type="hidden" name="form_name" readonly value="login_form">
-				<div class="form-group col-md-12">
-					{{login_form.username}}
-					{% for error in login_form.username.errors%}
+				{%for formLo in formLogins%}
+				<div class="col-md-12 form-group">
+					{{ formLo }}
+					{% for error in formLo.errors%}
 					<small class="text-danger">{{error}}</small>
 					{%endfor%}
 				</div>
-				<div class="form-group col-md-12">
-					{{login_form.password}}
-					{% for error in login_form.password.errors%}
-					<small class="text-danger">{{error}}</small>
-					{%endfor%}
+				{%endfor%}
+				<div class="form-group col-6">
+					<input type="submit" name="signup" value="Login" class="pink_btn">
 				</div>
-				<div class="form-group col-md-12">
-					<input type="submit" name="signup" value="SIGN UP" class="pink_btn">
+				<div class="form-group col-6 text-right">
+					<a href="{% url 'password_reset' %}">Forgot Password?</a>
 				</div>
 			</form>
 			{% if messages %}

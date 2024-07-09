@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Banner, user_client, category_master, contact_us, franchise, tbl_product, address
+from .models import Banner, user_client, category_master, contact_us, franchise, tbl_product, address, ProfileVerification, Cart, OrderPlaced
 
 
 # Register your models here.
@@ -37,6 +37,7 @@ class franchise_admin(admin.ModelAdmin):
 
 admin.site.register(franchise, franchise_admin)
 
+
 class product_admin(admin.ModelAdmin):
     list_display = ('productname', 'category', 'mrp')
 
@@ -44,3 +45,18 @@ class product_admin(admin.ModelAdmin):
 admin.site.register(tbl_product, product_admin)
 
 admin.site.register(address)
+
+
+@admin.register(ProfileVerification)
+class ProfileVerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'email', 'email_token', 'email_verified')
+
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'product', 'quantity',)
+
+
+@admin.register(OrderPlaced)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('id', 'customer', 'product', 'ordered_date', 'status')

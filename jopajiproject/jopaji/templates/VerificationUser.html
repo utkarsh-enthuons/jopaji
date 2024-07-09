@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title%}Verify OTP{%endblock%}
+{%block content%}
+<!--================sign-in Area =================-->
+<section class=" p_100">
+<div class="container">
+	<div class="row">
+        <div class="col-md-8 mx-auto wow">
+            <div class="main_title wow zoomIn">
+                <h2>Verify OTP</h2>
+            </div>
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+            {%endif%}
+            <form class="row wow lightSpeedIn" action="" method="POST" id="contactForm">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <input type="hidden" name="email" value="{{ses_username}}">
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="text" maxlength="6" name="otp" class="form-control" placeholder="Enter OTP">
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <input type="submit" name="signup" value="Verify Now" class="pink_btn">
+                </div>
+            </form>
+            <div class="text-right">
+                <a href="/email-otp" class="link" style="text-decoration: underline">Resend OTP</a>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger mt-3">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+<!--================End sign-in Area =================-->
+{% endblock %}

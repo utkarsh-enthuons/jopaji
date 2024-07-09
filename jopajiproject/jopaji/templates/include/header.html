@@ -42,7 +42,8 @@
                         <li><a href="{% url 'franchise'%}">Franchise</a></li>
                         <li><a href="{% url 'contact us'%}">Contact Us</a></li>
                         {% if user.is_authenticated %}
-                            <li><a href="/admin/" class="book_order">My Account</a></li>
+                            <li><a href="{% url 'dashboard' %}">My Account</a></li>
+                            <li><a href="{% url 'cart' %}"><span class="badge bg-danger text-white">{{cart_len}}</span> Cart</a></li>
                         {% else %}
                             <li><a href="{% url 'book order'%}" class="book_order">Book an order</a></li>
                         {% endif %}

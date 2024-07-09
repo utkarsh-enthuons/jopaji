@@ -6129,3 +6129,13 @@ aside.f_widget.f_about_widget img {
 /* End Footer Area css
 ============================================================================================ */
 /*# sourceMappingURL=style.css.map */
+.card-body{
+    position: relative
+}
+
+.card-body .card-buttons{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #000
+}

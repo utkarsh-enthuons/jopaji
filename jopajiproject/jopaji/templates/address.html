@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title%}Address View{%endblock%}
+{%block content%}
+<!--================End Main Header Area =================-->
+<section class="banner_area wow bounceInDown">
+	{% for sub_banner in sub_banners%}
+	<picture>
+		<source media="(max-width:767px)" srcset="{{ sub_banner.mob_image.url }}">
+		<source media="(min-width:768px)" srcset="{{ sub_banner.desk_image.url }}">
+		<img src="#" alt="{{ sub_banner.title }}">
+	</picture>
+	{% endfor %}
+	<div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Address</li>
+			</ol>
+		</nav>
+	</div>
+</section>
+<!--================End Main Header Area =================-->
+<!--================sign-in Area =================-->
+<section class=" p_100">
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 border-right wow animate">
+			{%include 'include/admin-sidebar.html'%}
+		</div>
+		<div class="col-md-9 wow animate">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="text-dark mb-0">{%if id%}Edit{%else%}Add{%endif%} Address</h3>
+                    </div>
+                    <hr>
+                    {% if messages %}
+                    {% for message in messages %}
+                     <div class="alert alert-warning mt-5">{{message}}</div>
+                    {% endfor %}
+                   {%endif%}
+                   {% if form.non_field_errors %}
+                     {% for error in form.non_field_errors %}
+                      <p class="alert alert-danger my-3">{{error}}</p>
+                     {% endfor %}
+                    {% endif %}
+                   <form action="" method="post" class="shadow">
+                    {% csrf_token %}
+                    <div class="row">
+                    {%for forms in form%}
+                       <div class="col-sm-6">
+                            <div class="form-group mb-3">
+                             {{forms.label_tag}}
+                             {{forms}}
+                             {% for error in forms.errors%}
+                             <small class="text-danger">{{error}}</small>
+                             {%endfor%}
+                            </div>
+                       </div>
+                    {%endfor%}
+                    </div>
+                    <div class="text-start">
+                     <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                   </form>
+                   {% if messages %}
+                   {% for message in messages %}
+                   <div class="alert alert-success mt-5">{{message}}</div>
+                   {% endfor %}
+                   {%endif%}
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+</section>
+<!--================End sign-in Area =================-->
+{% endblock %}

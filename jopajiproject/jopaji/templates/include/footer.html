@@ -70,10 +70,35 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-
             </div>
-            <div class="mo"></div>
-
+            <div class="modal-body">
+              <div class="product-modal-section">
+                <div class="product-modal-img">
+                  <img id='model_pro_image' src="" alt="">
+                </div>
+                <div class="product-modal-content">
+                  <h4 id="model_pro_name"></h4>
+                  <p id="model_pro_description"></p>
+                </div>
+              </div>
+              <div class="product-modal-price">
+                <form class="update_qty" method="post" action="/add-to-cart/">
+                    {% csrf_token %}
+                    <input type="hidden" name="pro_id" id="pro_id" value="">
+                  <button class="minus" type="button">-</button>
+                  <input type="number" class="pqty" name="pro_qty" id="product_qty" value="" min="1">
+                  <button class="plus" type="button">+</button>
+                </form>
+                <div class="price">
+                 <input type="hidden" name="" class="" id="model_pro_price2">
+                  ₹ <span id="model_pro_price"></span>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary " data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success order_now">Order Now</button>
+            </div>
         </div>
     </div>
 </div>
@@ -114,25 +139,29 @@
     new WOW().init();
 </script>
 <script>
+
             $(".add_order").click(function() {
-               
                 var data_id=$(this).closest(".single-product").attr("data-id");
                 var action = 'fetch_data';
                 console.log(data_id);
                 $.ajax({
-                    url: "{% static 'create_order.php",
-                    method: "POST",
+                    type: 'GET',
+                    url : '/get_pro_details',
                     data: {
-                        action: action,
-                        data_id:data_id,
+                        prod_id:data_id
                     },
-                    success: function(data) {
-                        $("#exampleModal1").modal('hide');
+                    success: function(data){
+                        $("#model_pro_image").attr("src", data.product_image)
+                        $("#model_pro_name").html(data.product_name)
+                        $("#model_pro_description").html(data.product_short_description)
+                        $("#model_pro_price").html(data.product_mrp)
+                        $("#add_order form.update_qty input#product_qty").val("1")
+                        $("#model_pro_price2").val(data.product_mrp)
+                        $("#pro_id").val(data.product_id)
                         $('#add_order').modal('show');
-                        $('.mo').html(data);
-                        $(".address-modal-section .mb-2:first-child input").attr("checked","checked");
+                        console.log(data)
                     }
-                });
+                })
             });
             $(".home_add_order").click(function() {
                
@@ -154,4 +183,7 @@
                     }
                 });
             });
+            $(".order_now").click(function(){
+              $("form.update_qty").submit()
+            })
         </script>

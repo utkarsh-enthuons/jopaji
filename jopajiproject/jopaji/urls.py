@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_view
+from .forms import UserPasswordChange, UserPasswordReset, UserSetPasswordForm
 
 urlpatterns = [
     path('', views.index, name="homepage"),
@@ -7,6 +9,32 @@ urlpatterns = [
     path('franchise/', views.franchise, name="franchise"),
     path('our-menu/', views.our_menu, name="our menu"),
     path('contact-us/', views.contact_us, name="contact us"),
-    path('book-order/', views.book_order, name="book order"),
     path('our-menu/<slug:slug>/', views.product_list, name="Product List"),
+    path('login/', views.book_order.as_view(), name="book order"),
+    path('logout/', auth_view.LogoutView.as_view(next_page='book order'), name='logout'),
+    path('email-otp/', views.email_sent, name="email otp"),
+    path('verify-otp/', views.verify_otp, name="verify otp"),
+    path('passwordchange/', auth_view.PasswordChangeView.as_view(template_name='change-password.html', form_class=UserPasswordChange, success_url='/passwodchangedone/'), name='passwordchange'),
+    path('password-reset/', auth_view.PasswordResetView.as_view(template_name='password_reset.html', form_class=UserPasswordReset), name='password_reset'),
+    path('password-reset/done/', auth_view.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/', auth_view.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html', form_class=UserSetPasswordForm), name='password_reset_confirm'),
+    path('password-reset-complete/', auth_view.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html',), name='password_reset_complete'),
+    path('profile-user/', views.profile_user, name="profile user"),
+    path('dashboard/', views.dashboard, name="dashboard"),
+    path('orders/', views.orders, name="orders"),
+    path('user-verification/', views.user_verification, name="user verification"),
+    path('get_pro_details/', views.get_pro_details, name="get_pro_details"),
+    path('cart/', views.cart, name='cart'),
+    path('add-to-cart/', views.add_to_cart, name='add-to-cart'),
+    path('pluscart/', views.pluscart, name='pluscart'),
+    path('minuscart/', views.minuscart, name='minuscart'),
+    path('removeCart/', views.removecart, name='removecart'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('payment-done/', views.payment_done, name='payment-done'),
+    path('address/', views.AddAddress.as_view(), name='address'),
+    path('address/<int:id>', views.AddAddress.as_view(), name='address'),
+    path('address-view/', views.addressShow, name='address view'),
+    path('email-sent/', views.ver_email_sent, name='email sent'),
+    path('email-verification/<slug:slug>/', views.email_verification, name='email verification'),
+    path('order-cancelled/', views.order_cancelled, name='order cancelled'),
 ]

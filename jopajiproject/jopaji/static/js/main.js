@@ -472,27 +472,92 @@ var e;t?(t=n.makeArray(t),e=this.getItems(t)):e=this.items,this._getSorters(),th
 
     // order qty started...
     $("button.plus").on("click",function(){
-        var input_val = parseInt($(".update_qty input").val());
+        var input_val = parseInt($(".update_qty input#product_qty").val());
         // console.log(input_val);
         if(input_val!=NaN){
-            $(".update_qty input").val(input_val+1);
-            var price = parseInt($(".product-modal-price .price input").val());
+            $(".update_qty input#product_qty").val(input_val+1);
+            var price = parseFloat($(".product-modal-price .price input#model_pro_price2").val());
             $(".product-modal-price .price span").text((input_val+1)*price);
         }
     })
     $("button.minus").on("click",function(){
-      var  input_val = parseInt($(".update_qty input").val());
+      var  input_val = parseInt($(".update_qty input#product_qty").val());
         console.log(input_val);
         if(input_val>1 && input_val!=NaN){
             // console.log(input_val);
-            $(".update_qty input").val(input_val-1);
-            var price = parseInt($(".product-modal-price .price input").val());
+            $(".update_qty input#product_qty").val(input_val-1);
+            var price = parseInt($(".product-modal-price .price input#model_pro_price2").val());
             $(".product-modal-price .price span").text((input_val-1)*price);
         }
     })
-    $(".update_qty input").on("change",function(){
-      var  input_val = parseInt($(".update_qty input").val());
-        var price = parseInt($(".product-modal-price .price input").val());
+    $(".update_qty input#product_qty").on("change",function(){
+      var  input_val = parseInt($(".update_qty input#product_qty").val());
+        var price = parseInt($(".product-modal-price .price input#model_pro_price2").val());
         $(".product-modal-price .price span").text(input_val*price);
+    })
+
+
+    // order qty started...
+    $(".plus-cart").on("click",function(){
+        var pid = $(this).attr('data-id')
+        var qty = $(this).prev()
+        $.ajax({
+            type: 'GET',
+            url : '/pluscart',
+            data: {
+                prod_id:pid
+            },
+            success: function(data){
+                qty.text(data.quantity)
+                $('.card .card-body .list-group .list-group-item:nth-child(1) span').text("Rs. " + data.amount)
+                $('.card .card-body .list-group .list-group-item:nth-child(2) span').text("Rs. " + data.shipping_amount)
+                $('.card .card-body .list-group .list-group-item:nth-child(4) span strong').text("Rs. " + data.total_amt)
+            }
+        })
+    })
+    $(".minus-cart").on("click",function(){
+        var pid = $(this).attr('data-id')
+        var qty = $(this).next()
+        var value = parseInt($(this).next().text())
+        if (value > 1){
+            $.ajax({
+                type: 'GET',
+                url : '/minuscart',
+                data: {
+                prod_id:pid
+            },
+            success: function(data){
+                qty.text(data.quantity)
+                $('.card .card-body .list-group .list-group-item:nth-child(1) span').text("Rs. " + data.amount)
+                $('.card .card-body .list-group .list-group-item:nth-child(2) span').text("Rs. " + data.shipping_amount)
+                $('.card .card-body .list-group .list-group-item:nth-child(4) span strong').text("Rs. " + data.total_amt)
+                }
+            })
+        }else{
+            alert("Product's quantity can not be less than one.")
+        }
+    })
+    $(".remove-cart").on("click",function(){
+        var pid = $(this).attr('data-id')
+        var this_ = $(this).closest(".row")
+        $.ajax({
+            type: 'GET',
+            url : '/removeCart',
+            data: {
+            prod_id:pid
+        },
+            success: function(data){
+                $('.card .card-body .list-group .list-group-item:nth-child(1) span').text("Rs. " + data.amount)
+                $('.card .card-body .list-group .list-group-item:nth-child(2) span').text("Rs. " + data.shipping_amount)
+                $('.card .card-body .list-group .list-group-item:nth-child(4) span strong').text("Rs. " + data.total_amt)
+                $("#nav_cart span").text(data.cart_len)
+                this_.prev().remove()
+                this_.remove()
+                if (data.cart_len < 1){
+                    $("#nav_cart span").text(data.cart_len)
+                    $("#empty-cart").replaceWith(data.HTML)
+                }
+            }
+        })
     })
 })(jQuery)

@@ -44,7 +44,7 @@
 				<div class="form-row">
 					{% for product in prod_data %}
 					<div class="col-sm-6 col-md-4">
-						<div class="single-product wow zoomIn det" data-id="">
+						<div class="single-product wow zoomIn det" data-id="{{product.id}}">
 							<div class="single-product-img">
 								<img src="{{product.image1.url}}" alt="{{product.productname}}">
 							</div>
